@@ -19,9 +19,10 @@ def cleansing(sent):
     return res
 
 
-def tokenize(sent):
-    with open("stopwords-ko.txt", "r", encoding="utf-8") as f:
-        stopwords = f.readlines()
+def tokenize(sent, stopwords=None):
     tokens = tokenizer.morphs(sent.strip())
-    tokens = [tok for tok in tokens if len(tok) > 1 and tok not in stopwords]
+    if stopwords:
+        tokens = [tok for tok in tokens if len(tok) > 1 and tok not in stopwords]
+    else:
+        tokens = [tok for tok in tokens if len(tok) > 1]
     return tokens
