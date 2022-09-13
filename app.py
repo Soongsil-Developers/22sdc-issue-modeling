@@ -1,9 +1,8 @@
 from typing import List
 
 from fastapi import FastAPI
-from pydantic import BaseModel
-
 from model.LDA import lda_model
+from pydantic import BaseModel
 from utils.preprocessing import cleansing, tokenize
 
 
@@ -12,6 +11,10 @@ app = FastAPI()
 
 class Item(BaseModel):
     articles: List[str]
+
+
+with open("./stopwords-ko.txt", "r", encoding="utf-8") as f:
+    stopwords = f.readlines()
 
 
 @app.get("/")
@@ -24,7 +27,7 @@ async def keyword(item: Item):
     processed = []
     for num, art in enumerate(item.articles):
         cleaned = cleansing(art)
-        tokens = tokenize(cleaned)
+        tokens = tokenize(cleaned, stopwords)
         processed.append(" ".join(tokens))
 
     topic = lda_model(processed)
