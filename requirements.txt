@@ -1,0 +1,5 @@
+scikit-learn==1.1.2
+python-mecab-kor==1.2.3
+fastapi==0.82.0
+pydantic==1.10.2
+uvicorn==0.17.6
