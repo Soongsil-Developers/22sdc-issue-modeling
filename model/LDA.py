@@ -8,7 +8,7 @@ def get_topics(components, feature_names, n=5):
 
 
 def lda_model(processed):
-    vect = TfidfVectorizer(ngram_range=(3, 3), lowercase=True, tokenizer=lambda x: x.split(), max_features=500)
+    vect = TfidfVectorizer(ngram_range=(1, 1), lowercase=True, tokenizer=lambda x: x.split(), max_features=500)
     input_matrix = vect.fit_transform(processed)
     terms = vect.get_feature_names_out()
 

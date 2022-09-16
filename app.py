@@ -1,8 +1,9 @@
 from typing import List
 
 from fastapi import FastAPI
-from model.LDA import lda_model
 from pydantic import BaseModel
+
+from model.LDA import lda_model
 from utils.preprocessing import cleansing, tokenize
 
 
@@ -14,7 +15,7 @@ class Item(BaseModel):
 
 
 with open("./stopwords-ko.txt", "r", encoding="utf-8") as f:
-    stopwords = f.readlines()
+    stopwords = [word.strip() for word in f.readlines()]
 
 
 @app.get("/")
