@@ -20,7 +20,7 @@ def cleansing(sent):
 
 
 def tokenize(sent, stopwords=None):
-    tokens = tokenizer.morphs(sent.strip())
+    tokens = tokenizer.nouns(sent.strip())
     if stopwords:
         tokens = [tok for tok in tokens if len(tok) > 1 and tok not in stopwords]
     else:
